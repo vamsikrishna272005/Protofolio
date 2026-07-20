@@ -4,355 +4,556 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vamsi Krishna G | Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
 
-    <!-- CSS LINK -->
-    <link rel="stylesheet" href="style.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4rem;
+            background: var(--bg);
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .header-text p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .card p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Projects */
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            background: #f1f5f9;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 500;
+            color: var(--text);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Buttons & Links */
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #f1f5f9;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #f8fafc;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .header-text h1 {
+                font-size: 2.5rem;
+            }
+            .contact-info {
+                align-items: center;
+            }
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- HEADER -->
-
     <header>
         <div class="container header-content">
-
-            <div class="header-text">
-
+            <div class="header-text" data-aos="fade-right">
                 <h1>Vamsi Krishna G</h1>
-
                 <p>IT Undergraduate | Aspiring Web Developer | Web & UI/UX Designer</p>
-
-                <br>
-
-                <p>📍 Chennai, Tamil Nadu</p>
-                <p>📧 vamsikrishna272005@gmail.com</p>
-                <p>📞 +91 9361800247</p>
-
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu</p>
+                    <p><i class="fas fa-envelope"></i> vamsikrishna272005@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9361800247</p>
+                </div>
             </div>
 
-            <!-- PROFILE IMAGE -->
-
-     <div class="profile-image">
-    <img src="vamsik.jpeg" alt="Vamsi Krishna G">
-</div>
-
+            <div class="profile-image" data-aos="fade-left">
+                <img src="vamsik.jpeg" alt="Vamsi Krishna G" onerror="this.src='https://ui-avatars.com/api/?name=Vamsi+Krishna&background=2563eb&color=fff&size=200'">
+            </div>
         </div>
     </header>
 
-    <!-- ABOUT -->
-
-    <section>
-
-        <div class="container">
-
+    <div class="container">
+        <!-- ABOUT -->
+        <section id="about" data-aos="fade-up">
             <h2 class="section-title">About Me</h2>
-
             <div class="card">
-
                 <p>
                     Motivated IT undergraduate with strong interest in software development,
                     frontend technologies, UI/UX design, and problem solving.
                     Passionate about creating practical and user-friendly digital solutions.
                 </p>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- EDUCATION -->
-
-    <section>
-
-        <div class="container">
-
+        <!-- EDUCATION -->
+        <section id="education" data-aos="fade-up">
             <h2 class="section-title">Education</h2>
-
             <div class="card">
-
                 <h3>B.Tech - Information Technology</h3>
-
                 <p>Saveetha Engineering College, Chennai</p>
-
-                <p>2023 - 2027</p>
-
+                <p><i class="far fa-calendar-alt"></i> 2023 - 2027</p>
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- EXPERIENCE -->
-
-    <section>
-
-        <div class="container">
-
+        <!-- EXPERIENCE -->
+        <section id="experience" data-aos="fade-up">
             <h2 class="section-title">Experience</h2>
-
             <div class="card">
-
                 <h3>Data Analytics Intern</h3>
-
                 <p>Retech Solution | 2024</p>
-
                 <ul>
-
                     <li>Worked on Data Analytics fundamentals</li>
-
                     <li>Performed data cleaning and analysis</li>
-
                     <li>Extracted insights from datasets</li>
-
                 </ul>
-
             </div>
-
             <div class="card">
-
                 <h3>Hackathon Participant</h3>
-
                 <p>Annapoorna Engineering College | 2025</p>
-
                 <ul>
-
                     <li>Participated in team-based hackathon</li>
-
                     <li>Worked on rapid prototyping solutions</li>
-
                 </ul>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- PROJECTS -->
-
-    <section>
-
-        <div class="container">
-
+        <!-- PROJECTS -->
+        <section id="projects" data-aos="fade-up">
             <h2 class="section-title">Projects</h2>
-
             <div class="card">
-
                 <h3>Automated Food Quality Analysis Using Image Processing</h3>
-
-        
-
                 <p>
                     Developed a machine learning-based system to analyze food quality
                     automatically using image processing techniques.
                 </p>
-
-            
-
-                <br>
-
-                <p>
-                     <img src="fruit.png" 
-                alt="Automated Food Quality Analysis Project" 
-                class="project-image">
-                    <strong>Technologies:</strong>
-                    Python, Image Processing, Machine Learning
-                </p>
-
+                <img src="fruit.png" alt="Automated Food Quality Analysis Project" class="project-image" onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600'">
+                <p><strong>Technologies:</strong> Python, Image Processing, Machine Learning</p>
             </div>
            
-
             <div class="card">
-
                 <h3>Cycling Webpage Design & Development project!</h3>
-
                 <p>
                     This project combines my passion for cycling with web design and development.
                     I worked on creating a modern cycling-themed webpage
                 </p>
-
-                <br>
-
-                <p>
-                    <img src="cycle.png" 
-                alt="Cycling Webpage Design & Development Project" 
-                class="project-image">
-                    <strong>Technologies:</strong>
-                    HTML,CSS,JavaScript
-                </p>
-                
-
+                <img src="cycle.png" alt="Cycling Webpage Design & Development Project" class="project-image" onerror="this.src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=600'">
+                <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- SKILLS -->
-
-    <section>
-
-        <div class="container">
-
+        <!-- SKILLS -->
+        <section id="skills" data-aos="fade-up">
             <h2 class="section-title">Skills</h2>
-
-            <div class="skills">
-
-                <div class="skill">HTML</div>
-                <div class="skill">CSS</div>
-                <div class="skill">JavaScript</div>
-                <div class="skill">UI/UX Design</div>
-                <div class="skill">Figma</div>
-                <div class="skill">Java Programming(Basics)</div>
-
+            <div class="skills-grid">
+                <div class="skill-tag"><i class="fab fa-html5"></i> HTML</div>
+                <div class="skill-tag"><i class="fab fa-css3-alt"></i> CSS</div>
+                <div class="skill-tag"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="skill-tag"><i class="fas fa-pen-nib"></i> UI/UX Design</div>
+                <div class="skill-tag"><i class="fab fa-figma"></i> Figma</div>
+                <div class="skill-tag"><i class="fab fa-java"></i> Java Programming(Basics)</div>
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- LINKS -->
-
-    <section>
-
-        <div class="container">
-
+        <!-- LINKS -->
+        <section id="links" data-aos="fade-up">
             <h2 class="section-title">Links & Certificates</h2>
-
-            <div class="card">
-
-                <div class="links">
-
-                    <!-- GitHub -->
-
-                    <a href="https://github.com/vamsikrishna272005"
-                       target="_blank"
-                       class="btn">
-
-                        GitHub Profile
-
-                    </a>
-
-                    <!-- Add your Drive Links -->
-
-                    <a href="https://drive.google.com/file/d/1YI9J8vfEqZ_2rYNYKW8MqnAfLwWzs-xD/view?usp=sharing"
-                       target="_blank"
-                       class="btn">
-
-                        Internship Certificate
-
-                    </a>
-
-                    <a href="https://drive.google.com/drive/folders/167lxq5dFv0YSQfG4ZLi5ycfcGo0PR1sq?usp=sharing"
-                       target="_blank"
-                       class="btn">
-
-                        Inplant Certificates
-
-                    </a>
-                     </div>
-
+            <div class="links-container">
+                <a href="https://github.com/vamsikrishna272005" target="_blank" class="btn">
+                    <i class="fab fa-github"></i> GitHub Profile
+                </a>
+                <a href="https://drive.google.com/file/d/1YI9J8vfEqZ_2rYNYKW8MqnAfLwWzs-xD/view?usp=sharing" target="_blank" class="btn">
+                    <i class="fas fa-certificate"></i> Internship Certificate
+                </a>
+                <a href="https://drive.google.com/drive/folders/167lxq5dFv0YSQfG4ZLi5ycfcGo0PR1sq?usp=sharing" target="_blank" class="btn">
+                    <i class="fas fa-folder-open"></i> Inplant Certificates
+                </a>
+                <a href="https://drive.google.com/drive/folders/1JFEh8d0eh3nGWzf7gGKDL9hiHZ__MeH8?usp=sharing" target="_blank" class="btn">
+                    <i class="fas fa-graduation-cap"></i> Online Course Certificates
+                </a>
+                <a href="https://drive.google.com/drive/folders/1oYznhluR5EitaZO0nT6-eKUu_1nhY55v?usp=sharing" target="_blank" class="btn">
+                    <i class="fas fa-award"></i> Event Certificates
+                </a>
+                <a href="https://drive.google.com/file/d/1LJaCE5lme68UKYGV7gaNUQWxvO-7V4Kd/view?usp=sharing" target="_blank" class="btn">
+                    <i class="fas fa-file-pdf"></i> Download My Resume
+                </a>
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-
-        <section>
-
-        <div class="container">
-
-            <h2 class="section-title">Online Course Certificates</h2>
-
-            <div class="card">
-
-                <div class="links">
-
-                    <a
-                        href="https://drive.google.com/drive/folders/1JFEh8d0eh3nGWzf7gGKDL9hiHZ__MeH8?usp=sharing"
-                        target="_blank"
-                       class="btn">
-
-                        Course & participant Certificates
-
-                    </a>
-                    </a>
-                </div>
-
+        <!-- CONTACT FORM -->
+        <section id="contact" data-aos="fade-up">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-form">
+                <form id="portfolioForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="How can I help?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="5" placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
-
-        </div>
-
-    </section>
-
-        <section>
-
-        <div class="container">
-
-            <h2 class="section-title">Event Certificates</h2>
-
-            <div class="card">
-
-                <div class="links">
-
-                    <a
-                        href="https://drive.google.com/drive/folders/1oYznhluR5EitaZO0nT6-eKUu_1nhY55v?usp=sharing"
-                        target="_blank"
-                       class="btn">
-
-                        View Certificates
-
-                    </a>
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-        <Section>
-
-        <div class="container">
-
-            <h2 class="section-title">Download My Resume</h2>
-
-            <div class="card">
-
-                <div class="links">
-
-                    <a href="https://drive.google.com/file/d/1LJaCE5lme68UKYGV7gaNUQWxvO-7V4Kd/view?usp=sharing"
-                       target="_blank"
-                       class="btn">
-
-                        My Resume
-
-                    </a>
-
-                    
-                    
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+        </section>
+    </div>
 
     <!-- FOOTER -->
-
     <footer>
-
-        <p>
-            ©Vamsi Krishna G | Portfolio
-        </p>
-
+        <div class="container">
+            <p>© Vamsi Krishna G | Portfolio</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">Designed for professional excellence</p>
+        </div>
     </footer>
 
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Form Handling with WhatsApp Integration
+        document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Your WhatsApp Number (from the portfolio content)
+            const phoneNumber = "919361800247"; 
+            
+            // Construct the WhatsApp message
+            const whatsappMessage = `*New Portfolio Inquiry*%0A%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Email:* ${encodeURIComponent(email)}%0A` +
+                `*Subject:* ${encodeURIComponent(subject)}%0A%0A` +
+                `*Message:*%0A${encodeURIComponent(message)}`;
+            
+            // Create WhatsApp URL
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+            
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.innerText;
+            
+            // Professional feedback
+            btn.innerText = 'Redirecting to WhatsApp...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                // Open WhatsApp in a new tab
+                window.open(whatsappUrl, '_blank');
+                
+                btn.innerText = 'Sent to WhatsApp!';
+                btn.style.background = '#10b981'; // Green
+                this.reset();
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
